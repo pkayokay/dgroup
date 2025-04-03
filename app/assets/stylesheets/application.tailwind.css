@@ -1,1 +1,18 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@layer base {
+  body {
+    @apply p-7;
+  }
+  input {
+    @apply border border-gray-300 rounded px-3 py-2 mb-4;
+  }
+
+  input[type="submit"] {
+    @apply bg-blue-500 text-white px-4 py-2 rounded-md;
+  }
+  select {
+    @apply border border-gray-300 rounded px-3 py-2 mb-4;
+  }
+}

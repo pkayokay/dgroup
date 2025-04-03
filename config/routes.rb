@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "plans#show"
+  resources :plans, only: [:create]
   resource :session
 
   # resources :passwords, param: :token
