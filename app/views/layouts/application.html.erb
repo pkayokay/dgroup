@@ -23,6 +23,10 @@
   </head>
 
   <body>
+    <% if Current.user.present? %>
+      <%= Current.user.email_address %>
+      <%= button_to "Sign out", session_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
