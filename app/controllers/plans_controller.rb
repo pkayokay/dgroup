@@ -16,6 +16,6 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:plan_type)
+    params.expect(plan: [:plan_type, :start_date])
   end
 end

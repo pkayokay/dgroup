@@ -1,10 +1,16 @@
-<h1>Plan#show</h1>
-<p>Find me in app/views/plan/show.html.erb</p>
 <% if @plan.persisted? %>
-  <%= @plan.id %>
+  <%= @plan.plan_type.humanize.titleize %>
+  <%= format_date(@plan.start_date) %>
 <% else %>
+  <h1>Choose a Reading Plan</h1>
   <%= form_with model: @plan do |form| %>
-    <%= form.select :plan_type, Plan.plan_types.keys.map { |k| [k.humanize.titleize, k] }, { include_blank: "Select a plan" } %>
+    <%= form.label :plan_type, "Plan type" %><br />
+    <%= form.select :plan_type, Plan.plan_types.keys.map { |k| [k.humanize.titleize, k] }, { include_blank: "Select a plan", required: true } %>
+    <br />
+    <%= form.label :start_date, "Start date" %><br />
+    <%= form.date_field :start_date, value: Date.today, required: true %>
+    <p>You can change this at any time.</p>
+    <br />
     <%= form.submit %>
   <% end %>
 <% end %>
