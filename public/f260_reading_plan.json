@@ -1,0 +1,101 @@
+[
+  {
+    "week": 1,
+    "reading": [
+      "Genesis 1-2",
+      "Genesis 3-4",
+      "Genesis 6-7",
+      "Genesis 8-9",
+      "Job 1-2"
+    ],
+    "memory_verse": "Genesis 1:27"
+  },
+  {
+    "week": 2,
+    "reading": [
+      "Job 38-39",
+      "Job 40-42",
+      "Genesis 11-12",
+      "Genesis 15",
+      "Genesis 16-17"
+    ],
+    "memory_verse": "2 Timothy 2:2"
+  },
+  {
+    "week": 3,
+    "reading": [
+      "Genesis 18-19",
+      "Genesis 20-21",
+      "Genesis 22",
+      "Genesis 24",
+      "Genesis 25:19-34; 26"
+    ],
+    "memory_verse": "Genesis 50:20"
+  },
+  {
+    "week": 4,
+    "reading": [
+      "Genesis 27-28",
+      "Genesis 29-30:24",
+      "Genesis 31-32",
+      "Genesis 33 & 35",
+      "Genesis 37"
+    ],
+    "memory_comment": "Review previous 3 weeks"
+  },
+  {
+    "week": 5,
+    "reading": [
+      "Genesis 39-40",
+      "Genesis 41",
+      "Genesis 42-43",
+      "Genesis 44-45",
+      "Genesis 46-47"
+    ],
+    "memory_verse": "Psalm 1:1"
+  },
+  {
+    "week": 6,
+    "reading": [
+      "Genesis 48-49",
+      "Genesis 50-Exodus 1",
+      "Exodus 2-3",
+      "Exodus 4-5",
+      "Exodus 6-7"
+    ],
+    "memory_verse": "Psalm 1:1-2"
+  },
+  {
+    "week": 7,
+    "reading": [
+      "Exodus 8-9",
+      "Exodus 10-11",
+      "Exodus 12",
+      "Exodus 13:17-14",
+      "Exodus 16-17"
+    ],
+    "memory_verse": "Psalm 1:1-3"
+  },
+  {
+    "week": 8,
+    "reading": [
+      "Exodus 19-20",
+      "Exodus 24-25",
+      "Exodus 26-27",
+      "Exodus 28-29",
+      "Exodus 30-31"
+    ],
+    "memory_verse": "Psalm 1:1-4"
+  },
+  {
+    "week": 9,
+    "reading": [
+      "Exodus 32-33",
+      "Exodus 34-36:1",
+      "Exodus 40",
+      "Leviticus 8-9",
+      "Leviticus 16-17"
+    ],
+    "memory_verse": "Psalm 1:1-5"
+  }
+]
