@@ -17,7 +17,7 @@
   }
 
   [aria-busy] input[type="submit"] {
-    @apply opacity-50;
+    @apply opacity-80;
   }
 }
 
