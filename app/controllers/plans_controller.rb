@@ -17,7 +17,6 @@ class PlansController < ApplicationController
 
   def update
     @plan = Plan.find(params[:id])
-    sleep(10)
     if @plan.update(plan_params)
       redirect_to request.referrer
     else
