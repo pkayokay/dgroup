@@ -29,6 +29,7 @@
   input, select{
     @apply w-full focus:outline-none focus:border-neutral-500 focus:ring-2 focus:ring-neutral-600/30 border border-gray-300 rounded px-3 py-2 mb-4;
     @apply dark:bg-neutral-600 dark:border-neutral-500 dark:text-white focus:dark:border-neutral-500 focus:dark:ring-neutral-400/30;
+    @apply placeholder:text-neutral-400 dark:placeholder:text-neutral-500;
   }
 
   button[type="submit"], input[type="submit"] {
