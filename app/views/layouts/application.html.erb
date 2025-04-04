@@ -25,17 +25,20 @@
   </head>
 
   <body>
-
     <% if Current.user %>
       <%= render "shared/nav" %>
+      <div class="max-w-lg mx-auto">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </div>
     <% else %>
-      <div class="fixed top-4 right-4 z-10">
+      <div class="flex justify-end">
         <%= render "shared/theme_toggle" %>
       </div>
+      <div class="max-w-sm mx-auto mt-4">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </div>
     <% end %>
-    <div class="max-w-lg mx-auto">
-      <%= render "shared/flash" %>
-      <%= yield %>
-    </div>
   </body>
 </html>
