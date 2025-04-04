@@ -1,6 +1,10 @@
 class PlansController < ApplicationController
   def show
     @plan = Current.user.plan || Plan.new
+
+    if @plan.persisted?
+      @weeks = @plan.weeks
+    end
   end
 
   def update

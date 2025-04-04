@@ -14,7 +14,7 @@
       <%= form.date_field :start_date, value: @plan.start_date, required: true %>
       <%= form.submit %>
     <% end %>
-    <% @plan.weeks.each do |week| %>
+    <% @weeks.each do |week| %>
       <div class="py-4 border border-neutral-300 rounded-lg p-6 mb-6">
         <div class="mb-4 flex justify-between gap-2">
           <p class="font-semibold uppercase">Week <%= week.position %></p>
