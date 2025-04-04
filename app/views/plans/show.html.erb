@@ -5,7 +5,7 @@
       <%= render "plans/settings" %>
     <% else %>
       <h1 class="text-center"><%= @plan.plan_type.humanize.titleize %></h1>
-    <nav class="mb-6 bg-neutral-200/60 rounded p-1 inline-flex w-full">
+    <nav class="mb-6 bg-neutral-200/60 dark:bg-neutral-800/60 rounded p-1 inline-flex w-full">
       <% tabs = [
         { name: "Current Week", tab: nil },
         { name: "All Weeks", tab: "all_weeks" },
