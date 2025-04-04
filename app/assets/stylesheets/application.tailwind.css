@@ -1,8 +1,28 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
-@layer base {
+@layer components {
   body {
-    @apply p-7;
+    @apply p-6 antialiased;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold mb-4;
+  }
+
+  h2 {
+    @apply text-xl font-bold;
+  }
+
+  label {
+    @apply block text-sm mb-1;
+  }
+
+  input, select{
+    @apply w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600/30 border border-gray-300 rounded px-3 py-2 mb-4;
+  }
+
+  input[type="submit"] {
+    @apply border border-blue-700 cursor-pointer bg-blue-700 text-white px-4 py-2 rounded font-medium;
   }
 }

@@ -24,9 +24,13 @@
 
   <body>
     <% if Current.user.present? %>
-      <%= Current.user.email_address %>
-      <%= button_to "Sign out", session_path, method: :delete %>
+      <div class="flex justify-between items-center mb-4 sm:flex-row flex-col gap-4">
+        <p>Signed in as <%= Current.user.email_address %></p>
+        <%= button_to "Sign out", session_path, method: :delete, class: "border border-gray-300 rounded px-2 py-1 cursor-pointer hover:bg-gray-50" %>
+      </div>
     <% end %>
-    <%= yield %>
+    <div class="max-w-lg mx-auto mt-10">
+      <%= yield %>
+    </div>
   </body>
 </html>
