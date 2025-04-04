@@ -4,6 +4,6 @@ module PlanHelper
   end
 
   def format_date_range(start_date, end_date)
-    "#{start_date.strftime("%a, %B %d")} - #{end_date.strftime("%a, %B %d")}"
+    "#{start_date.strftime("%a, %b %d")} - #{end_date.strftime("%a, %b %d")}"
   end
 end
