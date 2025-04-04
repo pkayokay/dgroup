@@ -33,7 +33,7 @@
   }
 
   button[type="submit"], input[type="submit"] {
-    @apply border border-neutral-700 cursor-pointer bg-neutral-900 text-white px-4 py-2 rounded font-medium mb-0;
+    @apply hover:border-neutral-800 hover:bg-neutral-800 border border-neutral-900 cursor-pointer bg-neutral-900 text-white px-4 py-2 rounded font-medium mb-0;
   }
 
   input[type="checkbox"] {
