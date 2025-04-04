@@ -20,14 +20,14 @@
       <%= render "plans/settings" %>
     <% else %>
       <% if params[:tab] == "all_weeks" %>
-        <% if @current_week_id.present? %>
-          <a href="#current-week:<%= @current_week_id %>" class="whitespace-nowrap hover:bg-neutral-800 text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
+        <% if @current_week_position.present? %>
+          <a href="#current-week:<%= @current_week_position %>" class="whitespace-nowrap hover:bg-neutral-800 text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
             <span>Scroll to current week</span>
           </a>
         <% end %>
       <% end %>
       <% @weeks.each do |week| %>
-        <div class="py-4 border border-neutral-200 rounded p-6 mb-6" id="current-week:<%= week.id %>">
+        <div class="py-4 border border-neutral-200 rounded p-6 mb-6" id="current-week:<%= week.position %>">
           <div class="mb-4 flex justify-between gap-2">
             <p class="font-semibold uppercase">Week <%= week.position %></p>
             <p class=" text-neutral-500"><%= format_date_range(week.start_date, week.end_date) %></p>

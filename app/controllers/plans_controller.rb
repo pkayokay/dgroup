@@ -5,14 +5,16 @@ class PlansController < ApplicationController
     if @plan.persisted?
       if params[:tab] == "all_weeks"
         @weeks = @plan.weeks        
-        eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
-        @current_week_id = @plan.weeks.find_by(start_date: eastern_time.beginning_of_week..eastern_time.end_of_week)&.id
+        @current_week_position = find_plan_for_current_week&.position
       elsif params[:tab].blank?
-        # Find the current date in eastern time and find the week
-        eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
-        @weeks = [@plan.weeks.find_by(start_date: eastern_time.beginning_of_week..eastern_time.end_of_week)]
+        @weeks = [find_plan_for_current_week]
       end
     end
+  end
+
+  def find_plan_for_current_week
+    eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
+    @plan.weeks.find_by(start_date: eastern_time.beginning_of_week..eastern_time.end_of_week)
   end
 
   def update
