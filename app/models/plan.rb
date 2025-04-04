@@ -31,14 +31,13 @@ class Plan < ApplicationRecord
 
   def generate_weeks!
     case plan_type
-    when "f260_reading_plan"
+    when "old_and_new_testament_reading_plan"
       file_path = "public/old_and_new_testament_reading_plan.json"
     when "new_testament_reading_plan"
       file_path = "public/new_testament_reading_plan.json"
     end
 
     JSON.parse(File.read(file_path)).each do |week|
-      week = week.with_indifferent_access
       start_date, end_date = Plan.fetch_end_and_start_dates(week["week"], self.start_date)
       Week.create!(
         plan: self, 
