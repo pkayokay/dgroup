@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
-@layer components {
+@layer base {
   body {
     @apply p-6 antialiased;
   }
@@ -14,6 +14,12 @@
     @apply text-xl font-medium mb-4;
   }
 
+  [aria-busy] input[type="submit"] {
+    @apply opacity-50;
+  }
+}
+
+@layer components {
   label {
     @apply block text-sm mb-1;
   }
