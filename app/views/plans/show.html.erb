@@ -2,11 +2,16 @@
   <div class="mb-6">
     <h1><%= @plan.plan_type.humanize.titleize %></h1>
   </div>
-  <nav class="flex gap-4 mb-6">
-    <% [{ name: "Current Week", tab: nil }, { name: "All Weeks", tab: "all_weeks" }, { name: "Settings", tab: "settings" }].each do |tab| %>
+  <nav class="mb-6 bg-neutral-100 rounded-lg p-1.5 inline-flex">
+    <% tabs = [
+      { name: "Current Week", tab: nil },
+      { name: "All Weeks", tab: "all_weeks" },
+      { name: "Settings", tab: "settings" }
+    ] %>
+    <% tabs.each do |tab| %>
       <%= link_to tab[:name], root_path(tab: tab[:tab]), class: class_names(
-        params[:tab] == tab[:tab] ? "underline underline-offset-6 hover:opacity-100" : "opacity-50 hover:opacity-100",
-        "py-1"
+        params[:tab] == tab[:tab] ? "bg-white" : "text-neutral-500 hover:text-black",
+        "py-1.5 px-3 rounded font-medium"
       ) %>
     <% end %>
   </nav>
