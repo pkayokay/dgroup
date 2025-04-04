@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_03_002342) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_203844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_002342) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "weeks", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.integer "position", null: false
+    t.jsonb "chapters_data", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.jsonb "memory_verse_data", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id", "position"], name: "index_weeks_on_plan_id_and_position", unique: true
+    t.index ["plan_id", "start_date", "end_date"], name: "index_weeks_on_plan_id_and_start_date_and_end_date", unique: true
+    t.index ["plan_id"], name: "index_weeks_on_plan_id"
+  end
+
   add_foreign_key "plans", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "weeks", "plans"
 end
