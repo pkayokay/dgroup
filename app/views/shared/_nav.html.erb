@@ -1,0 +1,10 @@
+<div class="flex justify-between items-center mb-10 sm:flex-row flex-col gap-4">
+  <p>Signed in as <%= Current.user.email_address %></p>
+  
+  <div class="flex gap-5 items-center">
+    <%= link_to "Plan", root_path, class: "hover:text-black dark:hover:text-white text-neutral-600 dark:text-neutral-300 hover:opacity-100 p-0! border-none! font-normal!" %>
+    <%= link_to "Settings", root_path(tab: "settings"), class: "hover:text-black dark:hover:text-white text-neutral-600 dark:text-neutral-300 hover:opacity-100 p-0! border-none! font-normal!" %>
+    <%= button_to "Sign out", session_path, method: :delete, class: "bg-transparent! text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:opacity-100 p-0! border-none! font-normal!" %>
+    <%= render "shared/theme_toggle" %>
+  </div>
+</div>

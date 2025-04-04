@@ -10,6 +10,10 @@ module Authentication
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end
+
+    def prevent_authenticated_access(**options)
+      before_action :require_unathenticated_user, **options
+    end
   end
 
   private
@@ -19,6 +23,10 @@ module Authentication
 
     def require_authentication
       resume_session || request_authentication
+    end
+
+    def require_unathenticated_user
+      redirect_to root_path if authenticated?
     end
 
     def resume_session
