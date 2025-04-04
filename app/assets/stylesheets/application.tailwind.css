@@ -28,6 +28,7 @@
 
   input, select{
     @apply w-full focus:outline-none focus:border-neutral-500 focus:ring-2 focus:ring-neutral-600/30 border border-gray-300 rounded px-3 py-2 mb-4;
+    @apply dark:bg-neutral-600 dark:border-neutral-500 dark:text-white focus:dark:border-neutral-500 focus:dark:ring-neutral-400/30;
   }
 
   button[type="submit"], input[type="submit"] {
@@ -36,5 +37,6 @@
 
   input[type="checkbox"] {
     @apply w-5 h-5 p-1 mb-0 border border-neutral-300 rounded checked:bg-black checked:border-black;
+    @apply dark:bg-neutral-600 dark:border-neutral-500 dark:checked:bg-neutral-700 dark:checked:border-neutral-600;
   }
 }
