@@ -21,7 +21,7 @@
     <% else %>
       <% if params[:tab] == "all_weeks" %>
         <% if @current_week_id.present? %>
-          <a href="#current-week:<%= @current_week_id %>" class="whitespace-nowrap hover:bg-neutral-200 shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-100 rounded-full text-center inline-flex justify-center items-center gap-2">
+          <a href="#current-week:<%= @current_week_id %>" class="whitespace-nowrap hover:bg-neutral-700 text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
             <span>Scroll to current week</span>
           </a>
         <% end %>
