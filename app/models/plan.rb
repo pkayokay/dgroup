@@ -38,6 +38,7 @@ class Plan < ApplicationRecord
     end
 
     JSON.parse(File.read(file_path)).each do |week|
+      week = week.with_indifferent_access
       start_date, end_date = Plan.fetch_end_and_start_dates(week["week"], self.start_date)
       Week.create!(
         plan: self, 
