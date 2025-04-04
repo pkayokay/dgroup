@@ -9,3 +9,6 @@ application.register("auto-submit", AutoSubmitController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ThemeController from "./theme_controller"
+application.register("theme", ThemeController)

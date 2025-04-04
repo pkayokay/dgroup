@@ -1,9 +1,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
-    @apply p-6 antialiased;
+    @apply p-6 antialiased bg-white dark:bg-neutral-800 text-black dark:text-white;
   }
 
   h1 {
