@@ -1,4 +1,10 @@
-<h2>Settings</h2>
+<h1>Settings</h1>
+<div class="flex justify-between items-center mb-4 sm:flex-row flex-col gap-4">
+  <p>Signed in as <%= Current.user.email_address %></p>
+  <%= button_to "Sign out", session_path, method: :delete, class: "" %>
+</div>
+<hr class="my-8 border-neutral-300">
+<h2>Start Date</h2>
 <p class=" mb-4 opacity-80">
   This will reset the dates for all weeks.
 </p>
