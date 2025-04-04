@@ -11,7 +11,7 @@
   }
 
   h2 {
-    @apply text-xl font-bold;
+    @apply text-xl font-medium mb-4;
   }
 
   label {
@@ -22,7 +22,7 @@
     @apply w-full focus:outline-none focus:border-neutral-500 focus:ring-2 focus:ring-neutral-600/30 border border-gray-300 rounded px-3 py-2 mb-4;
   }
 
-  input[type="submit"] {
+  button[type="submit"], input[type="submit"] {
     @apply border border-neutral-700 cursor-pointer bg-neutral-900 text-white px-4 py-2 rounded font-medium;
   }
 
