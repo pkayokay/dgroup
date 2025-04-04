@@ -19,7 +19,7 @@
     </nav>
       <% if params[:tab] == "all_weeks" %>
         <% if @current_week_position.present? %>
-          <a href="#current-week:<%= @current_week_position %>" class="whitespace-nowrap hover:bg-neutral-800 text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
+          <a href="#current-week:<%= @current_week_position %>" class="z-40 whitespace-nowrap hover:bg-neutral-800 dark:hover:bg-black text-white dark:text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 dark:bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
             <span>Scroll to current week</span>
           </a>
         <% end %>
