@@ -22,8 +22,11 @@
           <%= form.submit %>
         <% end %>
     <% else %>
+      <% if params[:tab] == "all_weeks" %>
+        <a href="#current-week:<%= @current_week_id %>" class="text-sm text-neutral-500">Go to current week</a>
+      <% end %>
       <% @weeks.each do |week| %>
-        <div class="py-4 border border-neutral-300 rounded-lg p-6 mb-6">
+        <div class="py-4 border border-neutral-300 rounded-lg p-6 mb-6" id="current-week:<%= week.id %>">
           <div class="mb-4 flex justify-between gap-2">
             <p class="font-semibold uppercase">Week <%= week.position %></p>
             <p class=" text-neutral-500"><%= format_date_range(week.start_date, week.end_date) %></p>
