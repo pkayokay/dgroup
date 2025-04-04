@@ -28,7 +28,11 @@
     <% if Current.user %>
       <div class="flex justify-between items-center mb-10 sm:flex-row flex-col gap-4">
         <p>Signed in as <%= Current.user.email_address %></p>
-        <%= button_to "Sign out", session_path, method: :delete, class: "bg-transparent! text-black! opacity-50 hover:opacity-100 p-0! border-none! font-normal!" %>
+        <div class="flex gap-4">
+          <%= link_to "Plan", root_path, class: "opacity-50 hover:opacity-100 p-0! border-none! font-normal!" %>
+          <%= link_to "Settings", root_path(tab: "settings"), class: "opacity-50 hover:opacity-100 p-0! border-none! font-normal!" %>
+          <%= button_to "Sign out", session_path, method: :delete, class: "bg-transparent! text-black! opacity-50 hover:opacity-100 p-0! border-none! font-normal!" %>
+        </div>
       </div>
     <% end %>
     <div class="max-w-lg mx-auto">

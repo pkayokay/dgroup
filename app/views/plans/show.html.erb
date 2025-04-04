@@ -1,24 +1,22 @@
 <% if @plan.persisted? %>
-  <div class="mb-6">
-    <h1 class="text-center"><%= @plan.plan_type.humanize.titleize %></h1>
-  </div>
-  <nav class="mb-6 bg-neutral-200/60 rounded p-1 inline-flex w-full">
-    <% tabs = [
-      { name: "Current Week", tab: nil },
-      { name: "All Weeks", tab: "all_weeks" },
-      { name: "Settings", tab: "settings" }
-    ] %>
-    <% tabs.each do |tab| %>
-      <%= link_to tab[:name], root_path(tab: tab[:tab]), class: class_names(
-        params[:tab] == tab[:tab] ? "bg-white" : "text-neutral-500 hover:text-black",
-        "py-1.5 px-3.5 whitespace-nowrap rounded sm:text-base text-sm font-medium flex-1 text-center cursor-pointer"
-      ) %>
-    <% end %>
-  </nav>
   <div class="">
     <% if params[:tab] == "settings" %>
+      <h1 class="text-center">Plan Settings</h1>
       <%= render "plans/settings" %>
     <% else %>
+      <h1 class="text-center"><%= @plan.plan_type.humanize.titleize %></h1>
+    <nav class="mb-6 bg-neutral-200/60 rounded p-1 inline-flex w-full">
+      <% tabs = [
+        { name: "Current Week", tab: nil },
+        { name: "All Weeks", tab: "all_weeks" },
+      ] %>
+      <% tabs.each do |tab| %>
+        <%= link_to tab[:name], root_path(tab: tab[:tab]), class: class_names(
+          params[:tab] == tab[:tab] ? "bg-white" : "text-neutral-500 hover:text-black",
+          "py-1.5 px-3.5 whitespace-nowrap rounded sm:text-base text-sm font-medium flex-1 text-center cursor-pointer"
+        ) %>
+      <% end %>
+    </nav>
       <% if params[:tab] == "all_weeks" %>
         <% if @current_week_position.present? %>
           <a href="#current-week:<%= @current_week_position %>" class="whitespace-nowrap hover:bg-neutral-800 text-white shadow-md px-4 py-1 fixed bottom-8 right-1/2 translate-x-1/2 bg-neutral-900 rounded-full text-center inline-flex justify-center items-center gap-2">
