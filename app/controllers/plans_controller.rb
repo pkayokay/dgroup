@@ -20,7 +20,7 @@ class PlansController < ApplicationController
   def update
     @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
-      redirect_to request.referrer, alert: "Plan updated"
+      redirect_to request.referrer, notice: "Plan updated"
     else
       render :show, status: :unprocessable_entity
     end
