@@ -11,9 +11,9 @@ class WeeksController < ApplicationController
     end
 
     if @week.save
-      redirect_to root_path
+      redirect_to request.referrer
     else
-      redirect_to root_path, alert: "Failed to update, try again."
+      redirect_to request.referrer, alert: "Failed to update, try again."
     end
   end
 

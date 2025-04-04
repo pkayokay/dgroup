@@ -3,7 +3,13 @@ class PlansController < ApplicationController
     @plan = Current.user.plan || Plan.new
 
     if @plan.persisted?
-      @weeks = @plan.weeks
+      if params[:tab] == "all_weeks"
+        @weeks = @plan.weeks
+      elsif params[:tab].blank?
+        # Find the current date in eastern time and find the week
+        eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
+        @weeks = [@plan.weeks.find_by(start_date: eastern_time.beginning_of_week..eastern_time.end_of_week)]
+      end
     end
   end
 

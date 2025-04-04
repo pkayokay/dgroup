@@ -7,51 +7,60 @@
       <%= format_date(@plan.start_date) %>
     </p>
   </div>
-    <%= button_to "Reset", @plan, method: :delete, data: { turbo_confirm: "Are you sure? This will delete all your progress and start over." }, class: "btn btn-danger" %>
   <div class="">
-    <%= form_with model: @plan do |form| %>
-    <%= form.label :start_date, "Start date" %>
-      <%= form.date_field :start_date, value: @plan.start_date, required: true %>
-      <%= form.submit %>
-    <% end %>
-    <% @weeks.each do |week| %>
-      <div class="py-4 border border-neutral-300 rounded-lg p-6 mb-6">
-        <div class="mb-4 flex justify-between gap-2">
-          <p class="font-semibold uppercase">Week <%= week.position %></p>
-          <p class=" text-neutral-500"><%= format_date_range(week.start_date, week.end_date) %></p>
-        </div>
 
-        <div class="flex flex-col gap-3">
-        <% week.chapters_data.each do |chapter| %>
-          <%= form_with model: week, data: { controller: "auto-submit" } do |form| %>
-          <div class="flex flex-row-reverse items-center gap-3 justify-end">
-            <%= form.label chapter["reference"], class: "mb-0 cursor-pointer text-lg whitespace-nowrap", for: chapter["reference"] %>
-            <%= form.check_box :completed, id: chapter["reference"], checked: chapter["completed"], class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
-            <%= form.hidden_field :reference, value: chapter["reference"] %>
-            <%= form.hidden_field :action, value: "chapters_update" %>
-          </div>
-          <% end %>
+    <div class="flex gap-2">
+      <%= link_to "Current Week", root_path, class: class_names(params[:tab].blank? ? "underline" : "") %>
+      <%= link_to "All Weeks", root_path(tab: "all_weeks"), class: class_names(params[:tab] == "all_weeks" ? "underline" : "") %>
+      <%= link_to "Settings", root_path(tab: "settings"), class: class_names(params[:tab] == "settings" ? "underline" : "") %>
+    </div>
+    <% if params[:tab] == "settings" %>
+      <%= button_to "Reset", @plan, method: :delete, data: { turbo_confirm: "Are you sure? This will delete all your progress and start over." }, class: "btn btn-danger" %>
+          <%= form_with model: @plan do |form| %>
+        <%= form.label :start_date, "Start date" %>
+          <%= form.date_field :start_date, value: @plan.start_date, required: true %>
+          <%= form.submit %>
         <% end %>
+    <% else %>
+      <% @weeks.each do |week| %>
+        <div class="py-4 border border-neutral-300 rounded-lg p-6 mb-6">
+          <div class="mb-4 flex justify-between gap-2">
+            <p class="font-semibold uppercase">Week <%= week.position %></p>
+            <p class=" text-neutral-500"><%= format_date_range(week.start_date, week.end_date) %></p>
+          </div>
 
-        <div class="mt-4">
-          <p class="mb-2">
-            Memorize
-          </p>
-          <%= form_with model: week, data: { controller: "auto-submit" } do |form| %>
+          <div class="flex flex-col gap-3">
+          <% week.chapters_data.each do |chapter| %>
+            <%= form_with model: week, data: { controller: "auto-submit" } do |form| %>
             <div class="flex flex-row-reverse items-center gap-3 justify-end">
-              <% if week.memory_verse_reference.present? %>
-                <%= form.label week.memory_verse_reference, class: "capitalize mb-0 cursor-pointer text-lg whitespace-nowrap", for: week.memory_verse_reference %>
-                <%= form.check_box :completed, id: week.memory_verse_reference, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
-              <% else %>
-                <%= form.label week.memory_verse_comment, class: "capitalize mb-0 cursor-pointer text-lg whitespace-nowrap", for: week.memory_verse_comment %>
-                <%= form.check_box :completed, id: week.memory_verse_comment, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
-              <% end %>
-              <%= form.hidden_field :action, value: "memory_verse_update" %>
+              <%= form.label chapter["reference"], class: "capitalize mb-0 cursor-pointer text-lg whitespace-nowrap", for: chapter["reference"] %>
+              <%= form.check_box :completed, id: chapter["reference"], checked: chapter["completed"], class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
+              <%= form.hidden_field :reference, value: chapter["reference"] %>
+              <%= form.hidden_field :action, value: "chapters_update" %>
             </div>
+            <% end %>
           <% end %>
+
+          <div class="mt-4">
+            <p class="mb-2">
+              Memorize
+            </p>
+            <%= form_with model: week, data: { controller: "auto-submit" } do |form| %>
+              <div class="flex flex-row-reverse items-center gap-3 justify-end">
+                <% if week.memory_verse_reference.present? %>
+                  <%= form.label week.memory_verse_reference, class: "capitalize mb-0 cursor-pointer text-lg whitespace-nowrap", for: week.memory_verse_reference %>
+                  <%= form.check_box :completed, id: week.memory_verse_reference, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
+                <% else %>
+                  <%= form.label week.memory_verse_comment, class: "capitalize mb-0 cursor-pointer text-lg whitespace-nowrap", for: week.memory_verse_comment %>
+                  <%= form.check_box :completed, id: week.memory_verse_comment, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { action: "auto-submit#submit" } %>
+                <% end %>
+                <%= form.hidden_field :action, value: "memory_verse_update" %>
+              </div>
+            <% end %>
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 <% else %>
