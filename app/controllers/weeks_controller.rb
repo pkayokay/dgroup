@@ -3,15 +3,16 @@ class WeeksController < ApplicationController
   def update
     if chapters_update?
       chapter_data = @week.chapters_data.find { |chapter| chapter["reference"] == chapter_params[:reference] }
-      chapter_data["completed"] = chapter_params[:completed] == "1"
+      chapter_data["completed"] = chapter_params[:completed]
     end
 
     if memory_verse_update?
-      @week.memory_verse_completed = memory_verse_params[:completed] == "1"
+      @week.memory_verse_completed = memory_verse_params[:completed]
     end
 
     if @week.save
-      redirect_to request.referrer
+      # redirect_to request.referrer
+      render json: { success: true }
     else
       redirect_to request.referrer, alert: "Failed to update, try again."
     end
@@ -19,11 +20,11 @@ class WeeksController < ApplicationController
 
   private
   def memory_verse_update?
-    params[:week][:action] == "memory_verse_update"
+    params[:week][:reference].blank?
   end
 
   def chapters_update?
-    params[:week][:action] == "chapters_update"
+    params[:week][:reference].present?
   end
 
   def chapter_params
