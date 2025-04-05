@@ -38,7 +38,7 @@
           <% week.chapters_data.each do |chapter| %>
             <%= form_with model: week, data: { controller: "auto-submit", auto_submit_url_value: week_path(week) } do |form| %>
             <div class="flex flex-row-reverse items-center justify-end transition-all duration-150 origin-left" data-auto-submit-target="container">
-              <%= form.label chapter["reference"], class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left duration-300", "opacity-50 line-through-": chapter["completed"]), for: chapter["reference"], data: { auto_submit_target: "label" } %>
+              <%= form.label chapter["reference"], class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left", "opacity-50 line-through-": chapter["completed"]), for: chapter["reference"], data: { auto_submit_target: "label" } %>
               <%= form.check_box :completed, id: chapter["reference"], checked: chapter["completed"], class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
               <%= form.hidden_field :reference, value: chapter["reference"], data: { auto_submit_target: "referenceField" } %>
             </div>
@@ -52,10 +52,10 @@
             <%= form_with model: week, data: { controller: "auto-submit", auto_submit_url_value: week_path(week) } do |form| %>
               <div class="flex flex-row-reverse items-center justify-end transition-all duration-150 origin-left" data-auto-submit-target="container">
                 <% if week.memory_verse_reference.present? %>
-                  <%= form.label week.memory_verse_reference, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left duration-300", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_reference, data: { auto_submit_target: "label" } %>
+                  <%= form.label week.memory_verse_reference, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_reference, data: { auto_submit_target: "label" } %>
                   <%= form.check_box :completed, id: week.memory_verse_reference, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
                 <% else %>
-                  <%= form.label week.memory_verse_comment, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left duration-300", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_comment, data: { auto_submit_target: "label" } %>
+                  <%= form.label week.memory_verse_comment, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap transition-all origin-left", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_comment, data: { auto_submit_target: "label" } %>
                   <%= form.check_box :completed, id: week.memory_verse_comment, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
                 <% end %>
               </div>
