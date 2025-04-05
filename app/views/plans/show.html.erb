@@ -28,7 +28,7 @@
         <% end %>
       <% end %>
       <% @weeks.each do |week| %>
-        <div class="py-4 border border-neutral-200 dark:bg-neutral-800/60 dark:border-neutral-600 rounded p-6 mb-6" id="current-week:<%= week.position %>">
+        <div class="py-4 border border-neutral-200 bg-white dark:bg-neutral-800/60 dark:border-neutral-600 rounded p-6 mb-6" id="current-week:<%= week.position %>">
           <div class="mb-4 flex justify-between gap-2">
             <p class="font-semibold uppercase">Week <%= week.position %></p>
             <p class=" opacity-70"><%= format_date_range(week.start_date, week.end_date) %></p>
