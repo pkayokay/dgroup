@@ -3,6 +3,11 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 
 import JSConfetti from "js-confetti"
-const jsConfetti = new JSConfetti();
+document.addEventListener("turbo:load", () => {
+  const jsConfetti = new JSConfetti();
+  window.jsConfetti = jsConfetti;
+});
 
-window.jsConfetti = jsConfetti;
+document.addEventListener("turbo:before-cache", () => {
+  delete window.jsConfetti;
+});

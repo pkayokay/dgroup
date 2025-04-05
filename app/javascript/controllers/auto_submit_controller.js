@@ -42,6 +42,7 @@ export default class extends Controller {
       const data = await response.json
       if (data?.completed) {
         if (typeof jsConfetti !== "undefined") {
+          this.containerTarget.classList.remove("ml-4")
           jsConfetti.addConfetti()
         }
       }
