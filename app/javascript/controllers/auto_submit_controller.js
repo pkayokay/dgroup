@@ -1,8 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 import { patch } from "@rails/request.js"
-import JSConfetti from "js-confetti"
-
-const jsConfetti = new JSConfetti()
 
 // Connects to data-controller="auto-submit"
 export default class extends Controller {
@@ -44,7 +41,9 @@ export default class extends Controller {
     if (response.ok) {
       const data = await response.json
       if (data?.completed) {
-        jsConfetti.addConfetti()
+        if (typeof jsConfetti !== "undefined") {
+          jsConfetti.addConfetti()
+        }
       }
     } else {
       alert("Failed to update, try again.")
