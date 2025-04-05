@@ -1,5 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
-import { patch } from "@rails/request.js";
+import { patch } from "@rails/request.js"
+import JSConfetti from "js-confetti"
+
+const jsConfetti = new JSConfetti()
+
 // Connects to data-controller="auto-submit"
 export default class extends Controller {
   static targets = [
@@ -9,36 +13,44 @@ export default class extends Controller {
     "container",
     "referenceField"
   ]
-  static values = { url: { type: String, default: "" } }
 
-  connect() {
+  static values = {
+    url: { type: String, default: "" }
   }
 
-  submit() {
-    if (this.completedFieldTarget.checked) {
+  async submit() {
+    const completed = this.completedFieldTarget.checked
+
+    if (completed) {
       this.containerTarget.classList.add("ml-4")
-      this.labelTarget.classList.add("line-through-")
-      this.labelTarget.classList.add("opacity-50")
+      this.labelTarget.classList.add("line-through-", "opacity-50")
     } else {
-      this.labelTarget.classList.remove("line-through-")
-      this.labelTarget.classList.remove("opacity-50")
+      this.labelTarget.classList.remove("line-through-", "opacity-50")
     }
 
-    patch(this.urlValue, {
-      body: JSON.stringify({
-        week: {
-          completed: this.completedFieldTarget.checked,
-          reference: this.hasReferenceFieldTarget ? this.referenceFieldTarget.value : null
-        }
-      })
-    }).then((response) => {
-      if (response.ok) {
-        setTimeout(() => {
-          this.containerTarget.classList.remove("ml-4")
-        }, 120)
-      } else {
-        alert("Failed to update, try again.")
+    const body = {
+      week: {
+        completed,
+        reference: this.hasReferenceFieldTarget ? this.referenceFieldTarget.value : null
       }
+    }
+
+    const response = await patch(this.urlValue, {
+      contentType: "application/json",
+      responseKind: "json",
+      body: JSON.stringify(body)
     })
+
+    if (response.ok) {
+      const data = await response.json
+      if (data?.completed) {
+        jsConfetti.addConfetti()
+      }
+    } else {
+      alert("Failed to update, try again.")
+    }
+    setTimeout(() => {
+      this.containerTarget.classList.remove("ml-4")
+    }, 120)
   }
 }

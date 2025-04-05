@@ -11,14 +11,14 @@ class WeeksController < ApplicationController
     end
 
     if @week.save
-      # redirect_to request.referrer
-      render json: { success: true }
+      render json: { success: true, completed: @week.completed? }
     else
       redirect_to request.referrer, alert: "Failed to update, try again."
     end
   end
 
   private
+
   def memory_verse_update?
     params[:week][:reference].blank?
   end
