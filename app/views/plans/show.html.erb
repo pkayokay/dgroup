@@ -5,7 +5,7 @@
       <%= render "plans/settings" %>
     <% else %>
       <h1 class="mb-6 text-center"><%= @plan.plan_type.humanize.titleize %></h1>
-      <nav class="mb-6 bg-neutral-200/60 dark:bg-neutral-900/50 rounded p-1 inline-flex w-full">
+      <div class="mb-6 bg-neutral-200/60 dark:bg-neutral-900/50 rounded p-1 inline-flex w-full">
         <% tabs = [
           { name: "Current Week", tab: nil },
           { name: "All Weeks", tab: "all_weeks" },
@@ -16,13 +16,13 @@
             "py-1.5 px-3.5 whitespace-nowrap rounded font-medium flex-1 text-center cursor-pointer"
           ) %>
         <% end %>
-      </nav>
+      </div>
       <% if params[:tab] == "all_weeks" %>
         <% if @current_week_position.present? %>
           <div class="text-center -mt-2 mb-4">
             <a href="#current-week:<%= @current_week_position %>" class="items-center justify-center gap-1.5 hover:opacity-100 opacity-70 inline-flex">
               <span>Jump to current week</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             </a>
           </div>
         <% end %>
