@@ -18,3 +18,8 @@
   This will delete all your progress and start over.
 </p>
 <%= button_to "Reset Plan", @plan, method: :delete, class: "w-full", data: { turbo_submits_with: "Deleting...", turbo_confirm: "Are you sure? This will delete all your progress and start over." } %>
+<hr class="my-8 border-neutral-300 dark:border-neutral-600">
+<h2>Reset Password</h2>
+<p class=" mb-4 opacity-80">
+  Click <%= link_to "here", new_password_path, class: "underline", target: "_blank" %> to reset your password.
+</p>

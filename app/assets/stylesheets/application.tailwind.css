@@ -5,7 +5,7 @@
 
 @layer base {
   body {
-    @apply antialiased bg-neutral-50 dark:bg-neutral-800/90 text-black dark:text-white;
+    @apply pb-16 antialiased bg-neutral-50 dark:bg-neutral-800/90 text-black dark:text-white;
   }
 
   h1 {
