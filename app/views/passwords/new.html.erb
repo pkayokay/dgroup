@@ -6,3 +6,6 @@
   <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
   <%= form.submit "Email reset instructions", data: { loading_target: "button" } %>
 <% end %>
+<div class="mt-4">
+  <%= link_to "Back to sign in", new_session_path, class: "hover:underline" %>
+</div>
