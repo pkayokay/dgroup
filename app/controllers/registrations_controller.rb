@@ -17,6 +17,7 @@ class RegistrationsController < ApplicationController
       start_new_session_for @user
       redirect_to after_authentication_url, notice: "Signed up!"
     else
+      @previous_secret_code = params[:user][:church_name].strip
       render :new, status: :unprocessable_entity
     end
   end

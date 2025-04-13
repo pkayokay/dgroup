@@ -3,7 +3,7 @@
 <%= form_with model: @user, url: registration_path do |form| %>
   <div>
     <%= form.label :church_name, "What's the secret code?" %>
-    <%= form.text_field :church_name, required: true, autofocus: true, placeholder: "First part of our church name all lowercase..." %>
+    <%= form.text_field :church_name, required: true, autofocus: true, value: @previous_secret_code, placeholder: "First part of our church name all lowercase..." %>
   </div>
   <div>
     <%= form.label :email_address %>
