@@ -1,0 +1,11 @@
+<h1>Choose a Reading Plan</h1>
+<%= form_with model: @plan, data: { controller: "loading" } do |form| %>
+  <%= form.label :plan_type, "Plan" %>
+  <%= form.select :plan_type, Plan.plan_types.keys.map { |k| [k.humanize.titleize, k] }, { include_blank: "Select a plan", required: true } %>
+
+  <%= form.label :start_date, "Start date" %>
+  <%= form.date_field :start_date, value: Date.today, required: true %>
+  <p class="text-sm text-neutral-500 -mt-2">You can change this at any time.</p>
+  <br />
+  <%= form.submit "Get Started", data: { loading_target: "button" } %>
+<% end %>

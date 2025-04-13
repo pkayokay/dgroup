@@ -1,0 +1,71 @@
+<% if @plan.persisted? %>
+  <div class="">
+    <% if params[:tab] == "settings" %>
+      <h1 class="mb-6 text-center">Plan Settings</h1>
+      <%= render "plans/settings" %>
+    <% else %>
+      <h1 class="mb-6 text-center"><%= @plan.plan_type.humanize.titleize %></h1>
+      <div class="mb-6 bg-neutral-200/60 dark:bg-neutral-900/50 rounded p-1 inline-flex w-full">
+        <% tabs = [
+          { name: "Current Week", tab: nil },
+          { name: "All Weeks", tab: "all_weeks" },
+        ] %>
+        <% tabs.each do |tab| %>
+          <%= link_to tab[:name], root_path(tab: tab[:tab]), class: class_names(
+            params[:tab] == tab[:tab] ? "bg-white dark:bg-neutral-700" : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white",
+            "py-1.5 px-3.5 whitespace-nowrap rounded font-medium flex-1 text-center cursor-pointer"
+          ) %>
+        <% end %>
+      </div>
+      <% if params[:tab] == "all_weeks" %>
+        <% if @current_week_position.present? %>
+          <div class="text-center -mt-2 mb-4">
+            <a href="#current-week:<%= @current_week_position %>" class="items-center justify-center gap-1.5 hover:opacity-100 opacity-70 inline-flex">
+              <span>Jump to current week</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </a>
+          </div>
+        <% end %>
+      <% end %>
+      <% @weeks.each do |week| %>
+        <div class="py-4 border border-neutral-200 bg-white dark:bg-neutral-800/60 dark:border-neutral-600 rounded p-6 mb-6" id="current-week:<%= week.position %>">
+          <div class="mb-4 flex justify-between gap-2">
+            <p class="font-semibold uppercase">Week <%= week.position %></p>
+            <p class=" opacity-70"><%= format_date_range(week.start_date, week.end_date) %></p>
+          </div>
+
+          <div class="flex flex-col gap-4">
+          <% week.chapters_data.each do |chapter| %>
+            <%= form_with model: week, data: { controller: "auto-submit", auto_submit_url_value: week_path(week) } do |form| %>
+            <div class="flex flex-row-reverse items-center justify-end transition-all duration-150 origin-left" data-auto-submit-target="container">
+              <%= form.label chapter["reference"], class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap origin-left", "opacity-50 line-through-": chapter["completed"]), for: chapter["reference"], data: { auto_submit_target: "label" } %>
+              <%= form.check_box :completed, id: chapter["reference"], checked: chapter["completed"], class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
+              <%= form.hidden_field :reference, value: chapter["reference"], data: { auto_submit_target: "referenceField" } %>
+            </div>
+            <% end %>
+          <% end %>
+
+          <div class="mt-4">
+            <p class="mb-2">
+              Memorize
+            </p>
+            <%= form_with model: week, data: { controller: "auto-submit", auto_submit_url_value: week_path(week) } do |form| %>
+              <div class="flex flex-row-reverse items-center justify-end transition-all duration-150 origin-left" data-auto-submit-target="container">
+                <% if week.memory_verse_reference.present? %>
+                  <%= form.label week.memory_verse_reference, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap origin-left", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_reference, data: { auto_submit_target: "label" } %>
+                  <%= form.check_box :completed, id: week.memory_verse_reference, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
+                <% else %>
+                  <%= form.label week.memory_verse_comment, class: class_names("pl-3 capitalize mb-0 cursor-pointer text-lg whitespace-nowrap origin-left", "opacity-50 line-through-": week.memory_verse_completed), for: week.memory_verse_comment, data: { auto_submit_target: "label" } %>
+                  <%= form.check_box :completed, id: week.memory_verse_comment, checked: week.memory_verse_completed, class:"cursor-pointer w-5 h-5 p-1 mb-0", data: { auto_submit_target: "completedField", action: "auto-submit#submit" } %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render "plans/empty" %>
+<% end %>

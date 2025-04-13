@@ -2,6 +2,7 @@
   "name": "app",
   "private": true,
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
     "esbuild": "^0.25.2"
   },
   "scripts": {
@@ -11,7 +12,9 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.13",
+    "@rails/request.js": "^0.0.11",
     "@tailwindcss/cli": "^4.1.1",
+    "js-confetti": "^0.12.0",
     "tailwindcss": "^4.1.1"
   }
 }

@@ -1,1 +1,42 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    @apply antialiased bg-neutral-50 dark:bg-neutral-800/90 text-black dark:text-white;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold mb-4;
+  }
+
+  h2 {
+    @apply text-xl font-medium mb-4;
+  }
+
+  [aria-busy] input[type="submit"] {
+    @apply opacity-80;
+  }
+}
+
+@layer components {
+  label {
+    @apply block text-sm mb-1;
+  }
+
+  input, select{
+    @apply w-full focus:outline-none focus:border-neutral-500 focus:ring-2 focus:ring-neutral-600/30 border border-gray-300 rounded px-3 py-2 mb-4;
+    @apply dark:bg-neutral-600 dark:border-neutral-500 dark:text-white focus:dark:border-neutral-500 focus:dark:ring-neutral-400/30;
+    @apply placeholder:text-neutral-400 dark:placeholder:text-neutral-500;
+  }
+
+  button[type="submit"], input[type="submit"] {
+    @apply hover:border-neutral-800 hover:bg-neutral-800 border border-neutral-900 cursor-pointer bg-neutral-900 text-white px-4 py-2 rounded font-medium mb-0;
+  }
+
+  input[type="checkbox"] {
+    @apply w-5 h-5 p-1 mb-0 border border-neutral-300 rounded checked:bg-emerald-600 checked:border-emerald-600;
+  }
+}
