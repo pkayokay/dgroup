@@ -98,6 +98,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
+    csv (3.3.4)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -123,6 +124,10 @@ GEM
       listen
       rails (>= 7.0.0)
       zeitwerk
+    httparty (0.23.1)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -147,11 +152,18 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailpace-rails (0.4.1)
+      actionmailbox (>= 6.0.0)
+      actionmailer (>= 6.0.0)
+      activestorage (>= 6.0.0)
+      httparty (>= 0.18.1)
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
     net-imap (0.5.6)
       date
       net-protocol
@@ -314,6 +326,7 @@ DEPENDENCIES
   hotwire-spark
   jbuilder
   jsbundling-rails
+  mailpace-rails (~> 0.4.1)
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
