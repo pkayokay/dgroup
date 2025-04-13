@@ -8,6 +8,10 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    if params[:church_name] != ENV["SECRET_CODE"]
+      redirect_to new_registration_url, alert: "Invalid secret code."
+      return
+    end
     @user = User.new(params.expect(user: [:email_address, :password, :password_confirmation]))
     if @user.save
       start_new_session_for @user

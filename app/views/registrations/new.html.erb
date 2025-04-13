@@ -2,8 +2,12 @@
 
 <%= form_with model: @user, url: registration_path do |form| %>
   <div>
+    <%= form.label :church_name, "What's the secret code?" %>
+    <%= form.text_field :church_name, required: true, autofocus: true, placeholder: "First part of our church name all lowercase..." %>
+  </div>
+  <div>
     <%= form.label :email_address %>
-    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address" %>
+    <%= form.email_field :email_address, required: true, autocomplete: "username", placeholder: "Enter your email address" %>
     <% render_field_error(@user, :email_address) %>
   </div>
   <div>
