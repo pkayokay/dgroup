@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    if params[:user][:church_name].strip != ENV["SECRET_CODE"]
+    if Rails.env.production? && params[:user][:church_name].strip != ENV["SECRET_CODE"]
       redirect_to new_registration_url, alert: "Invalid secret code."
       return
     end
