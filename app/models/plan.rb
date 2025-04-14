@@ -4,7 +4,7 @@ class Plan < ApplicationRecord
 
   after_commit :resync_week_dates, on: :update
 
-  def self.complete_weeks(up_to_week)
+  def complete_weeks!(up_to_week)
     weeks = Week.where("weeks.position <= ?", up_to_week)
     weeks.each do |week|
       week.chapters_data.each do |data|
