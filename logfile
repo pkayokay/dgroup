@@ -6,3 +6,9 @@
 2025-04-04 22:12:27.893 EDT [2032] LOG:  database system is ready to accept connections
 2025-04-04 22:17:27.981 EDT [2033] LOG:  checkpoint starting: time
 2025-04-04 22:17:28.296 EDT [2033] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.309 s, sync=0.002 s, total=0.315 s; sync files=5, longest=0.001 s, average=0.001 s; distance=22 kB, estimate=22 kB; lsn=0/387D21E8, redo lsn=0/387D2190
+2025-04-16 20:04:05.478 EDT [33296] LOG:  starting PostgreSQL 17.2 on aarch64-apple-darwin24.3.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.6), 64-bit
+2025-04-16 20:04:05.479 EDT [33296] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-04-16 20:04:05.479 EDT [33296] LOG:  listening on IPv6 address "::1", port 5432
+2025-04-16 20:04:05.480 EDT [33296] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-04-16 20:04:05.501 EDT [33299] LOG:  database system was shut down at 2025-04-14 21:58:18 EDT
+2025-04-16 20:04:05.509 EDT [33296] LOG:  database system is ready to accept connections

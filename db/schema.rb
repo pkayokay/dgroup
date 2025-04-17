@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_03_203844) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_000347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,7 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_203844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id", "position"], name: "index_weeks_on_plan_id_and_position", unique: true
-    t.index ["plan_id", "start_date", "end_date"], name: "index_weeks_on_plan_id_and_start_date_and_end_date", unique: true
+    t.index ["plan_id", "start_date", "end_date"], name: "index_weeks_on_plan_id_and_start_date_and_end_date"
     t.index ["plan_id"], name: "index_weeks_on_plan_id"
   end
 
