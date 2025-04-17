@@ -36,7 +36,7 @@ class Plan < ApplicationRecord
 
   def self.fetch_end_and_start_dates(position, start_date)
     start_date = start_date + (position - 1).weeks
-    end_date = start_date + 5.days
+    end_date = start_date + 6.days
     [start_date, end_date]
   end
 
