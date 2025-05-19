@@ -14,7 +14,7 @@ class PlansController < ApplicationController
 
   def find_plan_for_current_week
     eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
-    @plan.weeks.find_by(start_date: eastern_time.beginning_of_week..eastern_time.end_of_week)
+    @plan.weeks.find_by("start_date <= ? AND end_date >= ?", eastern_time, eastern_time)
   end
 
   def update
