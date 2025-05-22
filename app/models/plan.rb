@@ -16,8 +16,6 @@ class Plan < ApplicationRecord
   end
 
   def resync_week_dates
-    return unless start_date_previously_changed?
-
     weeks.each_with_index do |week|
       start_date, end_date = Plan.fetch_end_and_start_dates(week.position, self.start_date)
       week.update(
@@ -35,8 +33,9 @@ class Plan < ApplicationRecord
   validates :start_date, presence: true
 
   def self.fetch_end_and_start_dates(position, start_date)
-    start_date = start_date + (position - 1).weeks
-    end_date = start_date + 5.days
+    eastern_zone = ActiveSupport::TimeZone["Eastern Time (US & Canada)"]
+    start_date = eastern_zone.parse(start_date.to_s) + (position - 1).weeks
+    end_date = start_date + 6.days
     [start_date, end_date]
   end
 
@@ -51,9 +50,9 @@ class Plan < ApplicationRecord
     JSON.parse(File.read(file_path)).each do |week|
       start_date, end_date = Plan.fetch_end_and_start_dates(week["week"], self.start_date)
       Week.create!(
-        plan: self, 
-        position: week["week"], 
-        start_date: start_date, 
+        plan: self,
+        position: week["week"],
+        start_date: start_date,
         end_date: end_date,
         chapters_data: week["chapters"].map do |chapter|
           {
