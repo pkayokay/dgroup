@@ -4,7 +4,7 @@ class PlansController < ApplicationController
 
     if @plan.persisted?
       if params[:tab] == "all_weeks"
-        @weeks = @plan.weeks        
+        @weeks = @plan.weeks
         @current_week_position = find_plan_for_current_week&.position
       elsif params[:tab].blank?
         @weeks = [find_plan_for_current_week]
@@ -13,8 +13,11 @@ class PlansController < ApplicationController
   end
 
   def find_plan_for_current_week
-    eastern_time = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)").now
-    @plan.weeks.find_by("start_date <= ? AND end_date >= ?", eastern_time, eastern_time)
+    eastern_time = Time.find_zone("Eastern Time (US & Canada)").now
+    start_of_day = eastern_time.beginning_of_day
+    end_of_day = eastern_time.end_of_day
+
+    @plan.weeks.find_by("start_date <= ? AND end_date >= ?", end_of_day, start_of_day)
   end
 
   def update
@@ -42,7 +45,7 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
-    
+
     if @plan.destroy
       redirect_to root_path
     else
