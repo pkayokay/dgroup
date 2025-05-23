@@ -34,7 +34,7 @@ class Plan < ApplicationRecord
 
   def self.fetch_end_and_start_dates(position, start_date)
     eastern_zone = ActiveSupport::TimeZone["Eastern Time (US & Canada)"]
-    start_date = eastern_zone.parse(start_date.to_s) + (position - 1).weeks
+    start_date = start_date.in_time_zone(eastern_zone).to_date + (position - 1).weeks
     end_date = start_date + 6.days
     [start_date, end_date]
   end
