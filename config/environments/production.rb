@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch("APP_URL") }
+  # config.action_mailer.default_url_options = { host: ENV.fetch("APP_URL") }
   config.action_mailer.delivery_method = :mailpace
   config.action_mailer.mailpace_settings = { api_token: ENV.fetch("MAILPACE_API_TOKEN") }
 
